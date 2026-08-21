@@ -1,0 +1,48 @@
+filters:
+  chemistry_status: complete
+  columns:
+    material_system:
+      include: [OPC_slag]
+    age_days:
+      equals: 28.0
+  drop_missing_inputs: true
+  drop_missing_targets: true
+
+metadata:
+  include:
+    - recipe_id
+    - chem_hash
+    - prepared_id
+    - reaction_model_id
+    - reaction_model_signature
+    - template_name
+    - material_system
+    - age_label
+    - age_bin
+    - chemistry_status
+    - solver_rescued
+    - xgems_retry_count
+
+inputs:
+  include:
+    - OPC
+    - slag
+    - gypsum
+    - w_b
+    - age_days
+
+targets:
+  scalars:
+    porosity: porosity
+    pH: scalar__pH
+  phase_amount_groups:
+    include:
+      - C-A-S-H
+      - ettringite
+      - Portlandite
+
+output:
+  metadata_prefix: meta__
+  input_prefix: x__
+  target_prefix: y__
+  sanitize_column_names: true

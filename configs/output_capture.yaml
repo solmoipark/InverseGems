@@ -1,0 +1,18 @@
+run_directory_pattern: run_YYYYMMDD_HHMMSS_short_hash
+preserve_raw_phase_names: true
+expected_files:
+  - manifest.json
+  - input_user_request.txt
+  - input_recipe.json
+  - input_materials_used.json
+  - input_reaction_degrees.json
+  - input_xgems_species_amounts.json
+  - xgems_phase_amounts_raw.csv
+  - xgems_phase_volumes_raw.csv
+  - xgems_aqueous_species_raw.csv
+  - xgems_scalars_raw.json
+  - xgems_attribute_report.json
+  - xgems_stdout.txt
+  - xgems_stderr.txt
+  - porosity.json
+  - warnings.json

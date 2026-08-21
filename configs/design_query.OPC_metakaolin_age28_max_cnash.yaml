@@ -1,0 +1,21 @@
+name: OPC_metakaolin_age28_max_cnash
+material_system: OPC_metakaolin
+age_days: 28
+
+design_space:
+  allowed_materials: [OPC, metakaolin]
+  strict_materials: true
+
+inputs:
+  w_b: {min: 0.30, max: 0.55}
+
+ranking:
+  mode: lexicographic
+
+preferences:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {target: Portlandite, direction: minimize}
+
+search_top_k: 20
+selection_top_k: 5

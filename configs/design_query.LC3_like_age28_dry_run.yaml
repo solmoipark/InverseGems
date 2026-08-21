@@ -1,0 +1,40 @@
+name: LC3_like_age28_dry_run
+material_system: LC3_like
+age_days: 28
+reaction_model:
+  id: local_default_parameters
+  signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+
+design_space:
+  allowed_materials: [OPC, metakaolin, limestone, gypsum]
+  input_constraints:
+    OPC: {max: 60}
+    w_b: {min: 0.30, max: 0.50}
+
+output_constraints:
+  porosity: {max: 0.40}
+  C-A-S-H: {min: 0.036}
+  ettringite: {max: 0.016}
+  monocarbonate: {min: 0.003}
+  Calcite: {min: 0.012}
+  pH: {min: 12.80, max: 13.10}
+
+objectives:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {input: OPC, direction: minimize}
+  - {target: monocarbonate, direction: maximize}
+  - {target: ettringite, direction: minimize}
+
+validation:
+  search_top_k: 60
+  top_k_xgems: 10
+  use_thermo_cache: true
+  use_nearest_neighbors: true
+  prediction_errors:
+    porosity: {max_abs: 0.020}
+    C-A-S-H: {max_abs: 0.003}
+    ettringite: {max_abs: 0.006}
+    monocarbonate: {max_abs: 0.004}
+    Calcite: {max_abs: 0.004}
+    pH: {max_abs: 0.06}

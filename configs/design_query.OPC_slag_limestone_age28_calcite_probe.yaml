@@ -1,0 +1,41 @@
+name: OPC_slag_limestone_age28_calcite_probe
+material_system: OPC_slag_limestone
+age_days: 28
+reaction_model:
+  id: local_default_parameters
+  signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+
+design_space:
+  allowed_materials: [OPC, slag, limestone, gypsum]
+  input_constraints:
+    OPC: {max: 62}
+    w_b: {min: 0.30, max: 0.48}
+
+output_constraints:
+  porosity: {max: 0.39}
+  C-A-S-H: {min: 0.0385}
+  ettringite: {max: 0.014}
+  Portlandite: {max: 0.018}
+  monocarbonate: {min: 0.003}
+  Calcite: {min: 0.004}
+
+objectives:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {input: OPC, direction: minimize}
+  - {target: Calcite, direction: maximize}
+  - {target: monocarbonate, direction: maximize}
+  - {target: ettringite, direction: minimize}
+
+validation:
+  search_top_k: 60
+  top_k_xgems: 10
+  use_thermo_cache: true
+  use_nearest_neighbors: true
+  prediction_errors:
+    porosity: {max_abs: 0.020}
+    C-A-S-H: {max_abs: 0.004}
+    ettringite: {max_abs: 0.004}
+    Portlandite: {max_abs: 0.005}
+    monocarbonate: {max_abs: 0.004}
+    Calcite: {max_abs: 0.005}

@@ -1,0 +1,105 @@
+OPC:
+  oxide_mass_percent:
+    SiO2: 20.2
+    Al2O3: 5.6
+    Fe2O3: 2.4
+    CaO: 65.9
+    MgO: 2.0
+    SO3: 2.6
+    Na2O: 0.5
+    K2O: 0.7
+  density_g_cm3: 3.15
+
+slag:
+  aliases: [BFS, blast_furnace_slag]
+  oxide_mass_percent:
+    SiO2: 36.49
+    Al2O3: 12.26
+    Fe2O3: 0.0
+    CaO: 41.79
+    MgO: 7.48
+    SO3: 1.98
+    Na2O: 0.0
+    K2O: 0.0
+  density_g_cm3: 2.90
+
+fly_ash:
+  aliases: [FA]
+  oxide_mass_percent:
+    SiO2: 51.8
+    Al2O3: 23.4
+    Fe2O3: 7.2
+    CaO: 10.8
+    MgO: 2.7
+    SO3: 1.1
+    Na2O: 1.3
+    K2O: 1.6
+  density_g_cm3: 2.20
+
+metakaolin:
+  aliases: [MK]
+  oxide_mass_percent:
+    SiO2: 54.1
+    Al2O3: 43.6
+    Fe2O3: 1.1
+    CaO: 0.2
+    MgO: 0.2
+    SO3: 0.1
+    Na2O: 0.1
+    K2O: 0.5
+  density_g_cm3: 2.50
+
+silica_fume:
+  aliases: [SF]
+  oxide_mass_percent:
+    SiO2: 99.3
+    Al2O3: 0.1
+    Fe2O3: 0.0
+    CaO: 0.1
+    MgO: 0.1
+    SO3: 0.0
+    Na2O: 0.1
+    K2O: 0.2
+  density_g_cm3: 2.20
+
+glass_cullet:
+  aliases: [GP, glass_powder, cullet]
+  # green soda-lime container glass, Mirzahosseini & Riding 2014 Table 1
+  # (Cr2O3 0.24 dropped)
+  oxide_mass_percent:
+    SiO2: 73.10
+    Al2O3: 1.65
+    Fe2O3: 0.44
+    CaO: 10.55
+    MgO: 0.0
+    SO3: 0.0
+    Na2O: 12.34
+    K2O: 0.58
+  density_g_cm3: 2.50
+
+pumice:
+  aliases: [natural_pozzolan_pumice]
+  # Pumice-N, Seraj et al. 2017 Table 2 (BET 10.9 m2/g, d50 3.8 um)
+  oxide_mass_percent:
+    SiO2: 69.0
+    Al2O3: 13.0
+    Fe2O3: 1.0
+    CaO: 0.96
+    MgO: 0.45
+    SO3: 0.05
+    Na2O: 4.0
+    K2O: 4.9
+  density_g_cm3: 2.40
+
+limestone:
+  aliases: [LS]
+  compound_mass_percent:
+    CaCO3: 100.0
+  density_g_cm3: 2.71
+
+gypsum:
+  aliases: [Gp, CSH2]
+  density_g_cm3: 2.32
+
+water:
+  density_g_cm3: 1.00

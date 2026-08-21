@@ -1,0 +1,77 @@
+# Formula map for databases that accept element bulk composition rather than
+# clinker/oxide input species. Keys are the mapped input names used by
+# configs/species_map.yaml.
+C3S:
+  Ca: 3
+  Si: 1
+  O: 5
+C2S:
+  Ca: 2
+  Si: 1
+  O: 4
+C3A:
+  Ca: 3
+  Al: 2
+  O: 6
+C4AF:
+  Ca: 4
+  Al: 2
+  Fe: 2
+  O: 10
+
+H2O@:
+  H: 2
+  O: 1
+H2O:
+  H: 2
+  O: 1
+
+SiO2:
+  Si: 1
+  O: 2
+Al2O3:
+  Al: 2
+  O: 3
+Fe2O3:
+  Fe: 2
+  O: 3
+CaO:
+  Ca: 1
+  O: 1
+MgO:
+  Mg: 1
+  O: 1
+SO3:
+  S: 1
+  O: 3
+Na2O:
+  Na: 2
+  O: 1
+K2O:
+  K: 2
+  O: 1
+
+Cal:
+  Ca: 1
+  C: 1
+  O: 3
+CaCO3:
+  Ca: 1
+  C: 1
+  O: 3
+
+Gp:
+  Ca: 1
+  S: 1
+  O: 6
+  H: 4
+gypsum:
+  Ca: 1
+  S: 1
+  O: 6
+  H: 4
+
+O2:
+  O: 2
+
+# from configs/materials.yaml oxide compositions; must match the dch A-matrix

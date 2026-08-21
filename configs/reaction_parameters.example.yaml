@@ -1,0 +1,53 @@
+id: trial_parameters_v0
+description: >
+  Example actual reaction-parameter set. Copy this file, edit values, and pass it
+  with --reaction-model-config. Partial files are also allowed; omitted values
+  fall back to the package defaults.
+
+pk_model:
+  relative_humidity: 1.0
+  fineness_m2_kg: 385.0
+  constants:
+    K1: {C3S: 1.5, C2S: 0.5, C3A: 1.0, C4AF: 0.37}
+    N1: {C3S: 0.7, C2S: 1.0, C3A: 0.85, C4AF: 0.7}
+    K2: {C3S: 0.05, C2S: 0.02, C3A: 0.04, C4AF: 0.015}
+    K3: {C3S: 1.1, C2S: 0.7, C3A: 1.0, C4AF: 0.4}
+    N3: {C3S: 3.3, C2S: 5.0, C3A: 3.2, C4AF: 3.7}
+    H: {C3S: 1.8, C2S: 1.35, C3A: 1.6, C4AF: 1.45}
+    Ea: {C3S: 41570.0, C2S: 20785.0, C3A: 54040.0, C4AF: 34087.0}
+    T0: 20.0
+    ref_fineness: 385.0
+
+scm_reaction:
+  slag: {A: 0.0, B: 0.75, C: 20.0, D: 0.55, G: 1.0}
+  fly_ash: {A: 0.0, B: 1.05, C: 35.0, D: 0.40, G: 1.0}
+  metakaolin: {A: 0.0, B: 0.95, C: 5.0, D: 0.55, G: 1.0}
+  silica_fume: {A: 0.0, B: 0.80, C: 3.0, D: 0.85, G: 1.0}
+
+availability_modifier:
+  enabled: true
+
+c3s_c2s_availability:
+  c2s_weight: 0.30
+  demand_coefficients:
+    slag: 0.35
+    fly_ash: 0.75
+    metakaolin: 1.00
+    silica_fume: 1.20
+  eta:
+    slag: 0.35
+    fly_ash: 0.60
+    metakaolin: 0.90
+    silica_fume: 1.00
+  absolute_max_D:
+    slag: 0.75
+    fly_ash: 0.60
+    metakaolin: 0.95
+    silica_fume: 0.95
+  reference_system:
+    basis_g_binder: 100
+    OPC: 60.0
+    SCM_total: 40.0
+    w_b: 0.4
+    C3S_source: bogue_from_default_OPC
+    C2S_source: bogue_from_default_OPC

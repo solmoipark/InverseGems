@@ -1,0 +1,21 @@
+name: global_chemistry_smoke_query
+material_system: OPC_slag
+age_days: 28
+
+design_space:
+  allowed_materials: [OPC, slag, gypsum]
+  strict_materials: true
+
+inputs:
+  w_b: {min: 0.30, max: 0.55}
+
+ranking:
+  mode: lexicographic
+
+preferences:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {target: Portlandite, direction: minimize}
+
+search_top_k: 10
+selection_top_k: 5

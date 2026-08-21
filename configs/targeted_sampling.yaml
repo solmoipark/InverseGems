@@ -1,0 +1,141 @@
+profiles:
+  carbonate_afm:
+    description: "Bias candidate generation toward carbonate AFm phases by emphasizing limestone plus Al-bearing SCM systems."
+    material_systems:
+      - LC3_like
+      - OPC_fly_ash_limestone
+      - OPC_slag_limestone
+      - OPC_limestone
+    material_systems_sampling: balanced
+    age_sampling:
+      mode: log_uniform
+      min: 1.0
+      max: 180.0
+      count: 2
+    water:
+      mode: wb_total
+      w_b: [0.30, 0.55]
+    bounds_overrides:
+      default:
+        limestone: [8.0, 25.0]
+        gypsum: [0.0, 6.0]
+      LC3_like:
+        OPC: [35.0, 65.0]
+        metakaolin: [18.0, 40.0]
+        limestone: [10.0, 25.0]
+        gypsum: [0.0, 5.0]
+      OPC_fly_ash_limestone:
+        OPC: [35.0, 75.0]
+        fly_ash: [15.0, 55.0]
+        limestone: [8.0, 22.0]
+        gypsum: [0.0, 6.0]
+      OPC_slag_limestone:
+        OPC: [30.0, 75.0]
+        slag: [15.0, 60.0]
+        limestone: [8.0, 20.0]
+        gypsum: [0.0, 6.0]
+      OPC_limestone:
+        OPC: [65.0, 90.0]
+        limestone: [8.0, 30.0]
+        gypsum: [0.0, 6.0]
+
+  hemicarbonate:
+    description: "Data-guided hemicarbonate exploration: low limestone with moderate OPC plus slag/fly ash systems."
+    material_systems:
+      - OPC_fly_ash_limestone
+      - OPC_slag_limestone
+      - quaternary_low_clinker
+    material_systems_sampling: balanced
+    age_sampling:
+      mode: log_uniform
+      min: 7.0
+      max: 365.0
+      count: 2
+    water:
+      mode: wb_total
+      w_b: [0.32, 0.55]
+    bounds_overrides:
+      default:
+        limestone: [0.0, 3.0]
+        gypsum: [0.0, 6.0]
+      OPC_fly_ash_limestone:
+        OPC: [44.0, 78.0]
+        fly_ash: [20.0, 55.0]
+        limestone: [0.0, 3.0]
+        gypsum: [0.0, 6.0]
+      OPC_slag_limestone:
+        OPC: [32.0, 78.0]
+        slag: [20.0, 67.0]
+        limestone: [0.0, 2.5]
+        gypsum: [0.0, 6.0]
+      quaternary_low_clinker:
+        OPC: [35.0, 65.0]
+        slag: [0.0, 30.0]
+        fly_ash: [4.0, 50.0]
+        metakaolin: [0.0, 20.0]
+        silica_fume: [0.0, 8.0]
+        limestone: [0.0, 2.5]
+        gypsum: [0.0, 4.5]
+
+  ettringite:
+    description: "Bias candidate generation toward sulfate-rich early-age systems for ettringite coverage."
+    material_systems:
+      - OPC_only
+      - OPC_slag
+      - OPC_fly_ash
+      - OPC_slag_fly_ash
+      - OPC_slag_limestone
+      - OPC_fly_ash_limestone
+    material_systems_sampling: balanced
+    age_sampling:
+      mode: log_uniform
+      min: 0.1
+      max: 28.0
+      count: 2
+    water:
+      mode: wb_total
+      w_b: [0.32, 0.55]
+    bounds_overrides:
+      default:
+        gypsum: [4.0, 8.0]
+      OPC_only:
+        OPC: [92.0, 96.0]
+        gypsum: [4.0, 8.0]
+      OPC_slag:
+        OPC: [35.0, 80.0]
+        slag: [15.0, 60.0]
+        gypsum: [4.0, 8.0]
+      OPC_fly_ash:
+        OPC: [35.0, 80.0]
+        fly_ash: [15.0, 60.0]
+        gypsum: [4.0, 8.0]
+      OPC_slag_fly_ash:
+        OPC: [30.0, 65.0]
+        slag: [10.0, 45.0]
+        fly_ash: [10.0, 45.0]
+        gypsum: [4.0, 8.0]
+
+  aluminosilicate_gel:
+    description: "Data-guided early-age Al-Si gel exploration in MK-rich OPC and LC3-like systems."
+    material_systems:
+      - OPC_metakaolin
+      - LC3_like
+    material_systems_sampling: balanced
+    age_sampling:
+      mode: log_uniform
+      min: 0.1
+      max: 3.0
+      count: 2
+    water:
+      mode: wb_total
+      w_b: [0.30, 0.55]
+    bounds_overrides:
+      OPC_metakaolin:
+        OPC: [55.0, 72.0]
+        metakaolin: [20.0, 40.0]
+        gypsum: [3.0, 8.0]
+      LC3_like:
+        OPC: [35.0, 65.0]
+        metakaolin: [20.0, 40.0]
+        limestone: [8.0, 24.0]
+        gypsum: [3.0, 8.0]

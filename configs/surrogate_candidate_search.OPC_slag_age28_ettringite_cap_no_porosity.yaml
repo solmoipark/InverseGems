@@ -1,0 +1,34 @@
+name: OPC_slag_age28_ettringite_cap_no_porosity
+
+model_table: data/model_table_OPC_slag_age28_1000_stable_targets.csv
+model_bundle: reports/baseline_surrogate_OPC_slag_age28_1000/model.joblib
+
+constraints:
+  metadata:
+    material_system:
+      include: [OPC_slag]
+    age_bin:
+      include: [standard]
+  inputs:
+    OPC: {min: 30, max: 85}
+    slag: {min: 15, max: 70}
+    gypsum: {min: 0, max: 8}
+    w_b: {min: 0.30, max: 0.55}
+    age_days: {min: 28, max: 28}
+  predicted_targets:
+    C-A-S-H: {min: 0.038}
+    ettringite: {max: 0.012}
+    Portlandite: {max: 0.020}
+
+objectives:
+  minimize:
+    OPC: 0.30
+    Portlandite: 0.60
+    gypsum: 0.30
+  maximize:
+    C-A-S-H: 1.00
+
+score:
+  normalize: minmax
+
+top_k: 50

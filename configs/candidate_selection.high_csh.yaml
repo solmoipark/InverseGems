@@ -1,0 +1,39 @@
+top_k: 10
+
+constraints:
+  chemistry_status: complete
+
+  inputs:
+    OPC:
+      max: 60.0
+    w_b:
+      min: 0.30
+      max: 0.40
+
+  validated_targets:
+    porosity:
+      max: 0.295
+    C-A-S-H:
+      min: 0.056
+    Portlandite:
+      max: 0.0001
+
+  prediction_errors:
+    C-A-S-H:
+      max_abs: 0.0025
+
+objectives:
+  minimize:
+    validated_targets:
+      porosity: 0.6
+      Calcite: 0.2
+    inputs:
+      OPC: 0.2
+
+  maximize:
+    validated_targets:
+      C-A-S-H: 1.5
+      ettringite: 0.2
+
+score:
+  normalize: minmax

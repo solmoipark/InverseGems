@@ -1,0 +1,15 @@
+id: local_reaction_model_v1
+description: >
+  Provenance bundle for the deterministic recipe-to-chemistry projection.
+  Change this id when deliberately starting a named parameter set.
+
+signature_files:
+  - src/inverse_gems/pk_model.py
+  - src/inverse_gems/scm_reaction.py
+  - src/inverse_gems/availability_modifier.py
+  - src/inverse_gems/bogue.py
+  - src/inverse_gems/xgems_input_builder.py
+  - configs/materials.yaml
+  - configs/scm_reaction.yaml
+  - configs/c3s_c2s_availability.yaml
+  - configs/species_map.yaml

@@ -1,0 +1,76 @@
+general_simplex:
+  total_binder_g: 100
+  OPC: {min: 20, max: 100}
+  slag: {min: 0, max: 80}
+  fly_ash: {min: 0, max: 70}
+  metakaolin: {min: 0, max: 40}
+  silica_fume: {min: 0, max: 15}
+  limestone: {min: 0, max: 35}
+  gypsum: {min: 0, max: 8}
+
+templates:
+  OPC_only:
+    OPC: [92, 100]
+    gypsum: [0, 8]
+    slag: [0, 0]
+    fly_ash: [0, 0]
+    metakaolin: [0, 0]
+    silica_fume: [0, 0]
+    limestone: [0, 5]
+  OPC_slag:
+    OPC: [20, 85]
+    slag: [15, 80]
+    limestone: [0, 20]
+    gypsum: [0, 8]
+    fly_ash: [0, 0]
+    metakaolin: [0, 0]
+    silica_fume: [0, 0]
+  OPC_fly_ash:
+    OPC: [25, 85]
+    fly_ash: [15, 75]
+    limestone: [0, 20]
+    gypsum: [0, 8]
+    slag: [0, 0]
+    metakaolin: [0, 0]
+    silica_fume: [0, 0]
+  LC3_like:
+    OPC: [35, 65]
+    metakaolin: [15, 40]
+    limestone: [5, 25]
+    gypsum: [0, 8]
+    slag: [0, 0]
+    fly_ash: [0, 0]
+    silica_fume: [0, 0]
+    constraints:
+      metakaolin_to_limestone_ratio: [1.2, 3.5]
+  OPC_silica_fume:
+    OPC: [75, 97]
+    silica_fume: [3, 15]
+    limestone: [0, 10]
+    gypsum: [0, 8]
+    slag: [0, 0]
+    fly_ash: [0, 0]
+    metakaolin: [0, 0]
+  quaternary_low_clinker:
+    OPC: [25, 65]
+    slag: [0, 50]
+    fly_ash: [0, 50]
+    metakaolin: [0, 25]
+    silica_fume: [0, 10]
+    limestone: [0, 25]
+    gypsum: [0, 8]
+
+mixed:
+  general_simplex_fraction: 0.5
+  recipe_templates_fraction: 0.5
+
+water:
+  mode: wb_total
+  w_b: {min: 0.25, max: 0.70}
+  water_g: {min: 5, max: 70}
+  wb_probability: 0.7
+  direct_h2o_probability: 0.3
+
+temperature_celsius:
+  mode: fixed
+  value: 20

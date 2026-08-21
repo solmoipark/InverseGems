@@ -1,0 +1,36 @@
+name: OPC_slag_limestone_age28_ordered_example
+
+material_system: OPC_slag_limestone
+age_days: 28
+age_bin: standard
+
+inputs:
+  OPC: {min: 30, max: 82}
+  slag: {min: 15, max: 70}
+  limestone: {min: 0, max: 15}
+  gypsum: {min: 0, max: 8}
+  w_b: {min: 0.30, max: 0.55}
+
+targets:
+  porosity: {max: 0.42}
+  C-A-S-H: {min: 0.0375}
+  ettringite: {max: 0.012}
+  Portlandite: {max: 0.018}
+
+prediction_errors:
+  porosity: {max_abs: 0.020}
+  C-A-S-H: {max_abs: 0.005}
+  ettringite: {max_abs: 0.004}
+  Portlandite: {max_abs: 0.005}
+
+ranking:
+  mode: lexicographic
+
+preferences:
+  - {target: C-A-S-H, direction: maximize, tolerance: 0.001}
+  - {input: OPC, direction: minimize}
+  - {target: porosity, direction: minimize}
+  - {target: monocarbonate, direction: maximize, tolerance: 0.001}
+
+search_top_k: 50
+selection_top_k: 10

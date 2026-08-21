@@ -1,0 +1,34 @@
+name: LC3_like_age28_ordered_example
+
+material_system: LC3_like
+age_days: 28
+age_bin: standard
+
+inputs:
+  OPC: {min: 35, max: 65}
+  metakaolin: {min: 15, max: 40}
+  limestone: {min: 5, max: 25}
+  gypsum: {min: 0, max: 8}
+  w_b: {min: 0.30, max: 0.55}
+
+targets:
+  porosity: {max: 0.43}
+  C-A-S-H: {min: 0.035}
+  ettringite: {max: 0.020}
+
+prediction_errors:
+  porosity: {max_abs: 0.020}
+  C-A-S-H: {max_abs: 0.004}
+  ettringite: {max_abs: 0.006}
+
+ranking:
+  mode: lexicographic
+
+preferences:
+  - {target: C-A-S-H, direction: maximize, tolerance: 0.001}
+  - {input: OPC, direction: minimize}
+  - {target: porosity, direction: minimize}
+  - {target: monocarbonate, direction: maximize, tolerance: 0.001}
+
+search_top_k: 50
+selection_top_k: 10

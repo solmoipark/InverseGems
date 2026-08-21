@@ -1,0 +1,40 @@
+name: OPC_fly_ash_limestone_age28_dry_run
+material_system: OPC_fly_ash_limestone
+age_days: 28
+reaction_model:
+  id: local_default_parameters
+  signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+
+design_space:
+  allowed_materials: [OPC, fly_ash, limestone, gypsum]
+  input_constraints:
+    OPC: {max: 65}
+    w_b: {min: 0.30, max: 0.50}
+
+output_constraints:
+  porosity: {max: 0.42}
+  C-A-S-H: {min: 0.032}
+  ettringite: {max: 0.016}
+  Portlandite: {max: 0.012}
+  Calcite: {min: 0.002}
+  pH: {min: 13.05, max: 13.35}
+
+objectives:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {input: OPC, direction: minimize}
+  - {target: Portlandite, direction: minimize}
+  - {target: Calcite, direction: maximize}
+
+validation:
+  search_top_k: 60
+  top_k_xgems: 10
+  use_thermo_cache: true
+  use_nearest_neighbors: true
+  prediction_errors:
+    porosity: {max_abs: 0.025}
+    C-A-S-H: {max_abs: 0.004}
+    ettringite: {max_abs: 0.006}
+    Portlandite: {max_abs: 0.005}
+    Calcite: {max_abs: 0.006}
+    pH: {max_abs: 0.08}

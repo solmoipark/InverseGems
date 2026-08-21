@@ -1,0 +1,43 @@
+name: forward_benchmark_OPC_only
+task_type: forward_time_series
+user_request: OPC only binder, age 1 to 90 days, report selected hydrate groups, pH, and porosity.
+
+forward_query:
+  name: forward_benchmark_OPC_only
+  task: forward_time_series
+  material_system: OPC_only
+
+  recipe:
+    binders:
+      OPC: 100
+    w_b: 0.4
+
+  age_grid:
+    values: [1, 28, 90]
+
+  temperature_celsius: 20
+
+  outputs:
+    phase_masses: all
+    phase_volumes: all
+    phase_volumes_reconstructed: all
+    aqueous_species: all
+    scalars: [pH, system_volume, system_mass]
+
+  plots:
+    - kind: phase_volumes
+      names: all_nonzero
+      top_n: 8
+      filename: phase_volumes_vs_age.png
+      x_scale: log
+      y_scale: linear
+      title: OPC only raw xGEMS phase volumes vs age
+
+  response_summary:
+    phases: [CNASH, Portlandite, ettringite]
+    phase_groups: [C-A-S-H, Portlandite, ettringite, monosulfate]
+    scalars: [pH, porosity]
+    top_phases: 8
+    table_limit: 20
+    narrative_enabled: true
+    narrative_language: ko

@@ -1,0 +1,46 @@
+name: target_first_inverse_design_example
+
+# User-facing inverse-design contract.
+# The user supplies desired output constraints and optional material/input constraints,
+# not a fixed recipe.
+
+design_space:
+  material_systems: [OPC_slag]
+  allowed_materials: [OPC, slag, gypsum]
+  input_constraints:
+    OPC: {max: 40}
+    gypsum: {max: 5}
+    w_b: {min: 0.30, max: 0.50}
+  age_days: 28
+
+# Optional: require a specific reaction parameter set. If this is set, the
+# registry entry must carry the same reaction_model_id/signature.
+# reaction_model:
+#   id: trial_parameters_v0
+#   config: configs/reaction_parameters.example.yaml
+
+model_id: OPC_slag_age28_xgems_env
+
+output_constraints:
+  porosity: {max: 0.38}
+  ettringite: {max: 0.01}
+  C-A-S-H: {min: 0.04}
+  Portlandite: {max: 0.02}
+
+# Ordered priority: first maximize C-A-S-H, then minimize OPC, then minimize porosity.
+objectives:
+  - {target: C-A-S-H, direction: maximize}
+  - {input: OPC, direction: minimize}
+  - {target: porosity, direction: minimize}
+
+validation:
+  search_top_k: 60
+  top_k_xgems: 12
+  use_thermo_cache: true
+  use_nearest_neighbors: true
+  prediction_errors:
+    porosity: {max_abs: 0.02}
+    C-A-S-H: {max_abs: 0.004}
+
+# Model table and bundle are resolved from configs/design_query_model_registry.yaml
+# through model_id. They can also be supplied by --model-table/--model-bundle.

@@ -1,0 +1,498 @@
+{
+  "$defs": {
+    "AgeGridSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "points": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Points"
+        },
+        "spacing": {
+          "default": "linear",
+          "enum": [
+            "linear",
+            "log"
+          ],
+          "title": "Spacing",
+          "type": "string"
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start"
+        },
+        "stop": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stop"
+        },
+        "values": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Values"
+        }
+      },
+      "title": "AgeGridSpec",
+      "type": "object"
+    },
+    "ForwardOutputsSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "aqueous_species": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "default": "all",
+          "title": "Aqueous Species"
+        },
+        "phase_masses": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "default": "all",
+          "title": "Phase Masses"
+        },
+        "phase_volumes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "default": "all",
+          "title": "Phase Volumes"
+        },
+        "phase_volumes_reconstructed": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "default": "all",
+          "title": "Phase Volumes Reconstructed"
+        },
+        "scalars": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "default": "all",
+          "title": "Scalars"
+        }
+      },
+      "title": "ForwardOutputsSpec",
+      "type": "object"
+    },
+    "ForwardPlotSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "filename": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filename"
+        },
+        "kind": {
+          "default": "phase_volumes",
+          "enum": [
+            "phase_volumes",
+            "phase_volumes_reconstructed",
+            "phase_masses",
+            "aqueous_species",
+            "scalars"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "names": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "default": "all_nonzero",
+          "title": "Names"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        },
+        "top_n": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 12,
+          "title": "Top N"
+        },
+        "x_scale": {
+          "default": "log",
+          "enum": [
+            "linear",
+            "log"
+          ],
+          "title": "X Scale",
+          "type": "string"
+        },
+        "y_scale": {
+          "default": "linear",
+          "enum": [
+            "linear",
+            "log"
+          ],
+          "title": "Y Scale",
+          "type": "string"
+        }
+      },
+      "title": "ForwardPlotSpec",
+      "type": "object"
+    },
+    "ForwardRecipeSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "OPC": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Opc"
+        },
+        "binders": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Binders"
+        },
+        "fly_ash": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fly Ash"
+        },
+        "gypsum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gypsum"
+        },
+        "limestone": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Limestone"
+        },
+        "metakaolin": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Metakaolin"
+        },
+        "silica_fume": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Silica Fume"
+        },
+        "slag": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Slag"
+        },
+        "w_b": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "W B"
+        },
+        "water_g": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Water G"
+        }
+      },
+      "title": "ForwardRecipeSpec",
+      "type": "object"
+    },
+    "ForwardResponseSummarySpec": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "narrative_enabled": {
+          "default": true,
+          "title": "Narrative Enabled",
+          "type": "boolean"
+        },
+        "narrative_language": {
+          "default": "ko",
+          "enum": [
+            "ko",
+            "en"
+          ],
+          "title": "Narrative Language",
+          "type": "string"
+        },
+        "phase_groups": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Phase Groups",
+          "type": "array"
+        },
+        "phases": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Phases",
+          "type": "array"
+        },
+        "scalars": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Scalars",
+          "type": "array"
+        },
+        "table_limit": {
+          "default": 20,
+          "minimum": 1,
+          "title": "Table Limit",
+          "type": "integer"
+        },
+        "top_phases": {
+          "default": 8,
+          "minimum": 0,
+          "title": "Top Phases",
+          "type": "integer"
+        }
+      },
+      "title": "ForwardResponseSummarySpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "age_grid": {
+      "$ref": "#/$defs/AgeGridSpec"
+    },
+    "material_system": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Material System"
+    },
+    "name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Name"
+    },
+    "outputs": {
+      "$ref": "#/$defs/ForwardOutputsSpec"
+    },
+    "plots": {
+      "items": {
+        "$ref": "#/$defs/ForwardPlotSpec"
+      },
+      "title": "Plots",
+      "type": "array"
+    },
+    "recipe": {
+      "$ref": "#/$defs/ForwardRecipeSpec"
+    },
+    "response_summary": {
+      "$ref": "#/$defs/ForwardResponseSummarySpec"
+    },
+    "task": {
+      "default": "forward_time_series",
+      "enum": [
+        "forward_calculation",
+        "forward_time_series"
+      ],
+      "title": "Task",
+      "type": "string"
+    },
+    "temperature_celsius": {
+      "default": 20.0,
+      "title": "Temperature Celsius",
+      "type": "number"
+    }
+  },
+  "required": [
+    "recipe",
+    "age_grid"
+  ],
+  "title": "ForwardQuerySpec",
+  "type": "object"
+}

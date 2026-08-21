@@ -1,0 +1,136 @@
+examples:
+  - id: forward_volume_vs_time
+    user_request: OPC 40% + slag 30% + fly ash 30%, age 0.1 days to 360 days, calculate and plot volume vs time.
+    task_query:
+      name: OPC_slag_fly_ash_volume_vs_time
+      task_type: forward_time_series
+      user_request: OPC 40% + slag 30% + fly ash 30%, age 0.1 days to 360 days, calculate and plot volume vs time.
+      forward_query:
+        name: OPC_slag_fly_ash_volume_vs_time
+        task: forward_time_series
+        material_system: OPC_slag_fly_ash
+        recipe:
+          binders:
+            OPC: 40
+            slag: 30
+            fly_ash: 30
+          w_b: 0.4
+        age_grid:
+          start: 0.1
+          stop: 360
+          points: 24
+          spacing: log
+        temperature_celsius: 20
+        outputs:
+          phase_masses: all
+          phase_volumes: all
+          phase_volumes_reconstructed: all
+          aqueous_species: all
+          scalars: [pH, system_volume, system_mass]
+        plots:
+          - kind: phase_volumes
+            names: all_nonzero
+            top_n: 12
+            filename: phase_volumes_vs_age.png
+            x_scale: log
+            y_scale: linear
+            title: Raw xGEMS phase volumes vs age
+        response_summary:
+          phases: [CNASH, Portlandite]
+          phase_groups: [C-A-S-H, Portlandite, monosulfate]
+          scalars: [pH, porosity]
+          top_phases: 8
+          table_limit: 20
+          narrative_enabled: true
+          narrative_language: ko
+
+  - id: forward_single_age
+    user_request: Calculate OPC 60% and slag 40% at 28 days with w/b 0.45 and report raw phases.
+    task_query:
+      name: OPC_slag_age28_forward
+      task_type: forward_calculation
+      user_request: Calculate OPC 60% and slag 40% at 28 days with w/b 0.45 and report raw phases.
+      forward_query:
+        name: OPC_slag_age28_forward
+        task: forward_calculation
+        material_system: OPC_slag
+        recipe:
+          binders:
+            OPC: 60
+            slag: 40
+          w_b: 0.45
+        age_grid:
+          values: [28]
+        temperature_celsius: 20
+        outputs:
+          phase_masses: all
+          phase_volumes: all
+          phase_volumes_reconstructed: all
+          aqueous_species: all
+          scalars: all
+        plots: []
+        response_summary:
+          phases: []
+          phase_groups: []
+          scalars: [pH, porosity]
+          top_phases: 8
+          table_limit: 20
+          narrative_enabled: true
+          narrative_language: ko
+
+  - id: inverse_design_ordered_preferences
+    user_request: For OPC plus slag at 28 days, find mixtures with porosity below 0.40 and ettringite below 0.012, then prioritize high C-A-S-H, lower OPC, and lower porosity in that order.
+    task_query:
+      name: OPC_slag_age28_inverse_design
+      task_type: inverse_design
+      user_request: For OPC plus slag at 28 days, find mixtures with porosity below 0.40 and ettringite below 0.012, then prioritize high C-A-S-H, lower OPC, and lower porosity in that order.
+      design_query:
+        name: OPC_slag_age28_inverse_design
+        material_system: OPC_slag
+        age_days: 28
+        age_bin: standard
+        inputs:
+          OPC: {min: 30, max: 85}
+          slag: {min: 15, max: 70}
+          gypsum: {min: 0, max: 8}
+          w_b: {min: 0.30, max: 0.55}
+        targets:
+          porosity: {max: 0.40}
+          ettringite: {max: 0.012}
+        ranking:
+          mode: lexicographic
+        preferences:
+          - {target: C-A-S-H, direction: maximize, tolerance: 0.001}
+          - {input: OPC, direction: minimize}
+          - {target: porosity, direction: minimize}
+        search_top_k: 50
+        selection_top_k: 10
+
+  - id: inverse_design_auto_route
+    user_request: Use OPC, slag, and fly ash at 28 days; find low-porosity, high C-A-S-H binders with low OPC.
+    task_query:
+      name: auto_route_inverse_design_example
+      task_type: inverse_design
+      user_request: Use OPC, slag, and fly ash at 28 days; find low-porosity, high C-A-S-H binders with low OPC.
+      design_query:
+        name: auto_route_OPC_slag_fly_ash_age28
+        design_space:
+          allowed_materials: [OPC, slag, fly_ash]
+          age_days: 28
+          input_constraints:
+            OPC: {max: 65}
+            w_b: {min: 0.30, max: 0.50}
+        output_constraints:
+          porosity: {max: 0.42}
+          C-A-S-H: {min: 0.034}
+          Portlandite: {max: 0.012}
+        objectives:
+          - {target: C-A-S-H, direction: maximize}
+          - {target: porosity, direction: minimize}
+          - {input: OPC, direction: minimize}
+        validation:
+          search_top_k: 60
+          top_k_xgems: 10
+          prediction_errors:
+            porosity: {max_abs: 0.025}
+            C-A-S-H: {max_abs: 0.004}

@@ -1,0 +1,141 @@
+OPC_only:
+  description: "Plain OPC with optional gypsum adjustment; limestone kept at zero for strict comparison."
+  allowed: [OPC, gypsum]
+  bounds:
+    OPC: [92, 100]
+    gypsum: [0, 8]
+  fixed_zero: [slag, fly_ash, metakaolin, silica_fume, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_slag:
+  description: "Binary OPC-slag binder with optional gypsum. Other SCMs and limestone are fixed to zero."
+  allowed: [OPC, slag, gypsum]
+  bounds:
+    OPC: [30, 85]
+    slag: [15, 70]
+    gypsum: [0, 8]
+  fixed_zero: [fly_ash, metakaolin, silica_fume, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_slag_limestone:
+  description: "OPC-slag system with limestone and gypsum allowed."
+  allowed: [OPC, slag, limestone, gypsum]
+  bounds:
+    OPC: [30, 85]
+    slag: [15, 70]
+    limestone: [0, 15]
+    gypsum: [0, 8]
+  fixed_zero: [fly_ash, metakaolin, silica_fume]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_fly_ash:
+  description: "Binary OPC-fly ash binder with optional gypsum. Limestone fixed to zero."
+  allowed: [OPC, fly_ash, gypsum]
+  bounds:
+    OPC: [25, 85]
+    fly_ash: [15, 70]
+    gypsum: [0, 8]
+  fixed_zero: [slag, metakaolin, silica_fume, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_metakaolin:
+  description: "Binary OPC-metakaolin binder with optional gypsum. Limestone fixed to zero."
+  allowed: [OPC, metakaolin, gypsum]
+  bounds:
+    OPC: [55, 85]
+    metakaolin: [10, 40]
+    gypsum: [0, 8]
+  fixed_zero: [slag, fly_ash, silica_fume, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_limestone:
+  description: "OPC-limestone filler system with optional gypsum."
+  allowed: [OPC, limestone, gypsum]
+  bounds:
+    OPC: [65, 95]
+    limestone: [5, 30]
+    gypsum: [0, 8]
+  fixed_zero: [slag, fly_ash, metakaolin, silica_fume]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+LC3_like:
+  description: "OPC-metakaolin-limestone system with optional gypsum and MK/LS ratio constraint."
+  allowed: [OPC, metakaolin, limestone, gypsum]
+  bounds:
+    OPC: [35, 65]
+    metakaolin: [15, 40]
+    limestone: [5, 25]
+    gypsum: [0, 8]
+  fixed_zero: [slag, fly_ash, silica_fume]
+  constraints:
+    metakaolin_to_limestone_ratio: [1.2, 3.5]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_fly_ash_limestone:
+  description: "Ternary OPC-fly ash-limestone binder with optional gypsum."
+  allowed: [OPC, fly_ash, limestone, gypsum]
+  bounds:
+    OPC: [35, 80]
+    fly_ash: [15, 55]
+    limestone: [0, 20]
+    gypsum: [0, 8]
+  fixed_zero: [slag, metakaolin, silica_fume]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_slag_fly_ash:
+  description: "Ternary OPC-slag-fly ash binder with optional gypsum."
+  allowed: [OPC, slag, fly_ash, gypsum]
+  bounds:
+    OPC: [25, 70]
+    slag: [10, 55]
+    fly_ash: [10, 55]
+    gypsum: [0, 8]
+  fixed_zero: [metakaolin, silica_fume, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_slag_silica_fume:
+  description: "Ternary OPC-slag-silica fume binder with optional gypsum."
+  allowed: [OPC, slag, silica_fume, gypsum]
+  bounds:
+    OPC: [35, 80]
+    slag: [15, 55]
+    silica_fume: [3, 12]
+    gypsum: [0, 8]
+  fixed_zero: [fly_ash, metakaolin, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+OPC_silica_fume:
+  description: "OPC-silica fume binder with optional gypsum. Limestone fixed to zero."
+  allowed: [OPC, silica_fume, gypsum]
+  bounds:
+    OPC: [75, 97]
+    silica_fume: [3, 15]
+    gypsum: [0, 8]
+  fixed_zero: [slag, fly_ash, metakaolin, limestone]
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]
+
+quaternary_low_clinker:
+  description: "Broad low-clinker blended binder; intended for exploration, not strict material-system comparison."
+  allowed: [OPC, slag, fly_ash, metakaolin, silica_fume, limestone, gypsum]
+  bounds:
+    OPC: [25, 65]
+    slag: [0, 50]
+    fly_ash: [0, 50]
+    metakaolin: [0, 25]
+    silica_fume: [0, 10]
+    limestone: [0, 25]
+    gypsum: [0, 8]
+  fixed_zero: []
+  default_age_days: 28
+  default_w_b: [0.30, 0.55]

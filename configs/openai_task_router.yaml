@@ -1,0 +1,8 @@
+model: gpt-4.1-mini
+temperature: 0.0
+max_output_tokens: 4096
+max_repairs: 1
+
+prompt: configs/llm_task_router.prompt.md
+schema: configs/task_query.schema.json
+examples: configs/task_query.examples.yaml

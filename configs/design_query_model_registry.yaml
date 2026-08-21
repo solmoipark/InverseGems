@@ -1,0 +1,135 @@
+default_age_tolerance: 1.0e-9
+
+# Optional per-model reaction provenance for parameter-version-aware selection:
+# reaction_model_id: trial_parameters_v0
+# reaction_model_signature: <sha256 signature from surrogate_model_manifest.json>
+# The compiler matches material_system + age_days first, then narrows by these
+# fields when the query or CLI requests a specific reaction model.
+
+models:
+  - id: OPC_only_age28_current_pilot
+    material_system: OPC_only
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_only_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_only_age28_current_scale1000_retry/model.joblib
+    notes: OPC-only age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 7 rescued at cap_w_b=0.45.
+
+  - id: OPC_slag_age28_xgems_env
+    material_system: OPC_slag
+    age_days: 28.0
+    model_table: data/model_table_OPC_slag_age28_1000_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_slag_age28_1000_xgems_env/model.joblib
+    notes: OPC+slag age-28 model trained inside the xGEMS conda environment.
+
+  - id: OPC_slag_age28_current_pilot
+    material_system: OPC_slag
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_slag_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_slag_age28_current_scale1000_retry/model.joblib
+    notes: OPC+slag age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 33 rescued at cap_w_b=0.45.
+
+  - id: OPC_fly_ash_age28_xgems_env
+    material_system: OPC_fly_ash
+    age_days: 28.0
+    model_table: data/model_table_OPC_fly_ash_age28_500_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_fly_ash_age28_500_xgems_env/model.joblib
+    notes: OPC+fly ash age-28 model trained inside the xGEMS conda environment.
+
+  - id: OPC_fly_ash_age28_current_pilot
+    material_system: OPC_fly_ash
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_fly_ash_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_fly_ash_age28_current_scale1000_retry/model.joblib
+    notes: OPC+fly ash age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 85 rescued at cap_w_b=0.45.
+
+  - id: LC3_like_age28_xgems_env
+    material_system: LC3_like
+    age_days: 28.0
+    model_table: data/model_table_LC3_like_age28_500_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_LC3_like_age28_500_xgems_env/model.joblib
+    notes: LC3-like age-28 model trained inside the xGEMS conda environment.
+
+  - id: LC3_like_age28_current_pilot
+    material_system: LC3_like
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_LC3_like_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_LC3_like_age28_current_scale1000_retry/model.joblib
+    notes: LC3-like age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, with no rescued runs required.
+
+  - id: OPC_slag_limestone_age28_xgems_env
+    material_system: OPC_slag_limestone
+    age_days: 28.0
+    model_table: data/model_table_OPC_slag_limestone_age28_500_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_slag_limestone_age28_500_xgems_env/model.joblib
+    notes: OPC+slag+limestone age-28 model trained inside the xGEMS conda environment.
+
+  - id: OPC_slag_limestone_age28_current_pilot
+    material_system: OPC_slag_limestone
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_slag_limestone_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_slag_limestone_age28_current_scale1000_retry/model.joblib
+    notes: OPC+slag+limestone age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 5 rescued at cap_w_b=0.45.
+
+  - id: OPC_metakaolin_age28_current_pilot
+    material_system: OPC_metakaolin
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_metakaolin_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_metakaolin_age28_current_scale1000_retry/model.joblib
+    notes: OPC+metakaolin age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 22 rescued runs.
+
+  - id: OPC_silica_fume_age28_current_pilot
+    material_system: OPC_silica_fume
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_silica_fume_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_silica_fume_age28_current_scale1000_retry/model.joblib
+    notes: OPC+silica fume age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 30 rescued runs.
+
+  - id: OPC_limestone_age28_current_pilot
+    material_system: OPC_limestone
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_limestone_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_limestone_age28_current_scale1000_retry/model.joblib
+    notes: OPC+limestone age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 4 rescued runs.
+
+  - id: OPC_fly_ash_limestone_age28_current_pilot
+    material_system: OPC_fly_ash_limestone
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_fly_ash_limestone_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_fly_ash_limestone_age28_current_scale1000_retry/model.joblib
+    notes: OPC+fly ash+limestone age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, with no rescued runs required.
+
+  - id: OPC_slag_fly_ash_age28_current_pilot
+    material_system: OPC_slag_fly_ash
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_slag_fly_ash_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_slag_fly_ash_age28_current_scale1000_retry/model.joblib
+    notes: OPC+slag+fly ash age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 85 rescued runs.
+
+  - id: OPC_slag_silica_fume_age28_current_pilot
+    material_system: OPC_slag_silica_fume
+    age_days: 28.0
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/model_table_OPC_slag_silica_fume_age28_current_scale1000_retry_stable_targets.csv
+    model_bundle: reports/baseline_surrogate_OPC_slag_silica_fume_age28_current_scale1000_retry/model.joblib
+    notes: OPC+slag+silica fume age-28 model calculated from 1000 recipes using the current reaction parameter set and adaptive xGEMS-water retry; 1000 complete xGEMS runs were used for training, including 48 rescued runs.

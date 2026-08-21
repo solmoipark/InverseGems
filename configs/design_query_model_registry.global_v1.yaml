@@ -1,0 +1,134 @@
+default_age_tolerance: 0.0
+
+models:
+  - id: global_real_v1_multiage_OPC_only
+    material_system: OPC_only
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate. The table includes all material systems; metadata constraints restrict candidates to OPC_only during search.
+
+  - id: global_real_v1_multiage_OPC_slag
+    material_system: OPC_slag
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_slag by metadata.
+
+  - id: global_real_v1_multiage_OPC_fly_ash
+    material_system: OPC_fly_ash
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_fly_ash by metadata.
+
+  - id: global_real_v1_multiage_OPC_metakaolin
+    material_system: OPC_metakaolin
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_metakaolin by metadata.
+
+  - id: global_real_v1_multiage_OPC_silica_fume
+    material_system: OPC_silica_fume
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_silica_fume by metadata.
+
+  - id: global_real_v1_multiage_OPC_limestone
+    material_system: OPC_limestone
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_limestone by metadata.
+
+  - id: global_real_v1_multiage_OPC_slag_fly_ash
+    material_system: OPC_slag_fly_ash
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_slag_fly_ash by metadata.
+
+  - id: global_real_v1_multiage_OPC_slag_limestone
+    material_system: OPC_slag_limestone
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_slag_limestone by metadata.
+
+  - id: global_real_v1_multiage_OPC_fly_ash_limestone
+    material_system: OPC_fly_ash_limestone
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_fly_ash_limestone by metadata.
+
+  - id: global_real_v1_multiage_LC3_like
+    material_system: LC3_like
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to LC3_like by metadata.
+
+  - id: global_real_v1_multiage_OPC_slag_silica_fume
+    material_system: OPC_slag_silica_fume
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to OPC_slag_silica_fume by metadata.
+
+  - id: global_real_v1_multiage_quaternary_low_clinker
+    material_system: quaternary_low_clinker
+    age_min_days: 0.1
+    age_max_days: 365.0
+    continuous_age: true
+    reaction_model_id: local_default_parameters
+    reaction_model_signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+    model_table: data/global_chem_db_real_v1_multiage/global_chemistry/global_model_table.csv
+    model_bundle: data/global_chem_db_real_v1_multiage/global_chemistry/global_surrogate/model.joblib
+    notes: Global real-v1 reactive-chemistry surrogate restricted to quaternary_low_clinker by metadata.

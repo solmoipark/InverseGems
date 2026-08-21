@@ -1,0 +1,14 @@
+basis: initial_total_volume
+include_unreacted_binders: true
+water_density_g_cm3: 1.0
+xgems_run_mode: reacted_only
+xgems_phase_volume_unit: cm3
+prefer_reconstructed_phase_volumes: true
+clip_porosity_to_0_1: false
+non_solid_phase_name_patterns:
+  - aqueous
+  - aq
+  - gas
+  - vapour
+  - vapor
+  - solution

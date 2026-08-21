@@ -1,0 +1,37 @@
+name: OPC_slag_age28_balanced
+
+model_table: data/model_table_OPC_slag_age28_1000_stable_targets.csv
+model_bundle: reports/baseline_surrogate_OPC_slag_age28_1000/model.joblib
+
+constraints:
+  metadata:
+    material_system:
+      include: [OPC_slag]
+    age_bin:
+      include: [standard]
+  inputs:
+    OPC: {min: 30, max: 85}
+    slag: {min: 15, max: 70}
+    gypsum: {min: 0, max: 8}
+    w_b: {min: 0.30, max: 0.55}
+    age_days: {min: 28, max: 28}
+  predicted_targets:
+    porosity: {min: 0.20, max: 0.45}
+    pH: {min: 10.5, max: 13.5}
+    C-A-S-H: {min: 0.038}
+    Portlandite: {max: 0.020}
+
+objectives:
+  minimize:
+    OPC: 0.25
+    porosity: 1.00
+    Portlandite: 0.50
+    gypsum: 0.10
+  maximize:
+    C-A-S-H: 1.00
+    ettringite: 0.20
+
+score:
+  normalize: minmax
+
+top_k: 50

@@ -1,0 +1,24 @@
+name: auto_route_low_porosity_high_cash
+design_space:
+  allowed_materials: [OPC, slag, fly_ash]
+  age_days: 28
+  input_constraints:
+    OPC: {max: 65}
+    w_b: {min: 0.30, max: 0.50}
+
+output_constraints:
+  porosity: {max: 0.42}
+  C-A-S-H: {min: 0.034}
+  Portlandite: {max: 0.012}
+
+objectives:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {input: OPC, direction: minimize}
+
+validation:
+  search_top_k: 60
+  top_k_xgems: 10
+  prediction_errors:
+    porosity: {max_abs: 0.025}
+    C-A-S-H: {max_abs: 0.004}

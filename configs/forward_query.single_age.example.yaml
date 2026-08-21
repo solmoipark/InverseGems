@@ -1,0 +1,30 @@
+name: OPC_slag_age28_single_forward
+task: forward_calculation
+material_system: OPC_slag
+
+recipe:
+  binders:
+    OPC: 60
+    slag: 40
+  w_b: 0.45
+
+age_grid:
+  values: [28]
+
+temperature_celsius: 20
+
+outputs:
+  phase_masses: all
+  phase_volumes: all
+  phase_volumes_reconstructed: all
+  aqueous_species: all
+  scalars: all
+
+plots: []
+
+response_summary:
+  phases: [CNASH, Portlandite]
+  phase_groups: [C-A-S-H, Portlandite]
+  scalars: [pH, porosity]
+  narrative_enabled: true
+  narrative_language: ko

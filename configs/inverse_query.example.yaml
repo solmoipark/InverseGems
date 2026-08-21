@@ -1,0 +1,45 @@
+name: low_portlandite_low_porosity_example
+
+feature_table: data/feature_table_early_dense.parquet
+
+targets:
+  phase_amounts:
+    Portlandite:
+      min: 0
+      max: 5
+    CSHQ:
+      min: 20
+      max: null
+  phase_volumes: {}
+  aqueous_species: {}
+  scalars:
+    pH:
+      min: 12.5
+      max: 13.5
+    porosity:
+      min: 0
+      max: 0.25
+
+recipe_constraints:
+  OPC: {min: 20, max: 60}
+  fly_ash: {min: 0, max: 70}
+  slag: {min: 0, max: 80}
+  metakaolin: {min: 0, max: 40}
+  silica_fume: {min: 0, max: 15}
+  limestone: {min: 0, max: 35}
+  gypsum: {min: 0, max: 8}
+  w_b: {min: 0.25, max: 0.60}
+  age_days: {min: 0.0035, max: 365}
+  age_bin:
+    include: [ultra_early, early, around_1d, early_late, standard, long_term]
+
+objectives:
+  minimize:
+    OPC: 1.0
+    porosity: 1.0
+    Portlandite: 0.5
+  maximize:
+    CSHQ: 1.0
+
+top_k: 50
+missing_phase_policy: zero

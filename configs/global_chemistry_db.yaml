@@ -1,0 +1,51 @@
+schema_version: 1
+description: >
+  Global reactive-chemistry database layout for inverse_gems. Recipes, ages,
+  and material-system labels are provenance; lookup and surrogate modeling are
+  centered on projected reactive chemistry vectors and chem_hash values.
+
+paths:
+  artifact_dir: global_chemistry
+  feature_table: global_feature_table.csv
+  model_table: global_model_table.csv
+  surrogate_dir: global_surrogate
+  lookup_dir: lookups
+  acquisition_dir: acquisitions
+
+defaults:
+  selection_config: configs/output_selection.yaml
+  model_dataset_config: configs/model_dataset_chemistry_stable_targets.yaml
+  surrogate_config: configs/surrogate_baseline.yaml
+  nearest_distance_warn: 0.25
+
+identity:
+  exact_hash_column: meta__chem_hash
+  recipe_id_column: meta__recipe_id
+  reaction_model_id_column: meta__reaction_model_id
+  reaction_model_signature_column: meta__reaction_model_signature
+
+chemistry_inputs:
+  - x__chem_oxide_equiv_mol_CaO
+  - x__chem_oxide_equiv_mol_SiO2
+  - x__chem_oxide_equiv_mol_Al2O3
+  - x__chem_oxide_equiv_mol_Fe2O3
+  - x__chem_oxide_equiv_mol_MgO
+  - x__chem_oxide_equiv_mol_SO3
+  - x__chem_oxide_equiv_mol_Na2O
+  - x__chem_oxide_equiv_mol_K2O
+  - x__chem_oxide_equiv_mol_CO2
+  - x__chem_oxide_equiv_mol_H2O
+  - x__xgems_water_g
+  - x__temperature_celsius
+
+acquisition:
+  exact_hit_penalty: 100.0
+  novelty_bonus: 10.0
+  out_of_domain_bonus: 100.0
+  outside_range_bonus: 1000.0
+  nearest_distance_weight: 10.0
+  target_priority_weight: 25.0
+  target_region_weight: 50.0
+  target_region_distance_scale: 0.25
+  target_region_max_reference_rows: 1000
+  near_exact_sig_digits: 10

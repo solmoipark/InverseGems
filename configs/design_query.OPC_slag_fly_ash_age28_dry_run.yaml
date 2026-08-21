@@ -1,0 +1,38 @@
+name: OPC_slag_fly_ash_age28_dry_run
+material_system: OPC_slag_fly_ash
+age_days: 28
+reaction_model:
+  id: local_default_parameters
+  signature: 7b5ffe7839e76f81aa94e4d387d67ebfb1b993e8483906adfce3c239553eb9b1
+
+design_space:
+  allowed_materials: [OPC, slag, fly_ash, gypsum]
+  input_constraints:
+    OPC: {max: 65}
+    w_b: {min: 0.30, max: 0.50}
+
+output_constraints:
+  porosity: {max: 0.43}
+  C-A-S-H: {min: 0.034}
+  monosulfate: {max: 0.012}
+  Portlandite: {max: 0.009}
+  OH-hydrotalcite: {min: 0.0015}
+
+objectives:
+  - {target: C-A-S-H, direction: maximize}
+  - {target: porosity, direction: minimize}
+  - {input: OPC, direction: minimize}
+  - {target: Portlandite, direction: minimize}
+  - {target: OH-hydrotalcite, direction: maximize}
+
+validation:
+  search_top_k: 60
+  top_k_xgems: 10
+  use_thermo_cache: true
+  use_nearest_neighbors: true
+  prediction_errors:
+    porosity: {max_abs: 0.025}
+    C-A-S-H: {max_abs: 0.004}
+    monosulfate: {max_abs: 0.005}
+    Portlandite: {max_abs: 0.005}
+    OH-hydrotalcite: {max_abs: 0.001}

@@ -1,0 +1,33 @@
+name: OPC_fly_ash_age28_ordered_example
+
+material_system: OPC_fly_ash
+age_days: 28
+age_bin: standard
+
+inputs:
+  OPC: {min: 25, max: 85}
+  fly_ash: {min: 15, max: 70}
+  gypsum: {min: 0, max: 8}
+  w_b: {min: 0.30, max: 0.55}
+
+targets:
+  porosity: {max: 0.45}
+  C-A-S-H: {min: 0.035}
+  ettringite: {max: 0.012}
+  Portlandite: {max: 0.018}
+
+prediction_errors:
+  porosity: {max_abs: 0.020}
+  C-A-S-H: {max_abs: 0.004}
+  ettringite: {max_abs: 0.005}
+
+ranking:
+  mode: lexicographic
+
+preferences:
+  - {target: C-A-S-H, direction: maximize, tolerance: 0.001}
+  - {input: OPC, direction: minimize}
+  - {target: porosity, direction: minimize}
+
+search_top_k: 50
+selection_top_k: 10

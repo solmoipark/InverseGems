@@ -1,0 +1,20 @@
+name: OPC_fly_ash_age100_min_portlandite_porosity
+material_system: OPC_fly_ash
+age_days: 100
+
+design_space:
+  allowed_materials: [OPC, fly_ash]
+  strict_materials: true
+
+inputs:
+  w_b: {equals: 0.45}
+
+ranking:
+  mode: lexicographic
+
+preferences:
+  - {target: Portlandite, direction: minimize}
+  - {target: porosity, direction: minimize}
+
+search_top_k: 20
+selection_top_k: 5

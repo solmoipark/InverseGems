@@ -1,0 +1,55 @@
+top_k: 10
+
+constraints:
+  chemistry_status: complete
+
+  inputs:
+    OPC:
+      min: 30.0
+      max: 82.0
+    slag:
+      min: 15.0
+      max: 70.0
+    limestone:
+      min: 0.0
+      max: 15.0
+    gypsum:
+      min: 0.0
+      max: 8.0
+    w_b:
+      min: 0.30
+      max: 0.55
+    age_days:
+      equals: 28.0
+
+  validated_targets:
+    C-A-S-H:
+      min: 0.0375
+    ettringite:
+      max: 0.012
+    Portlandite:
+      max: 0.018
+
+  prediction_errors:
+    C-A-S-H:
+      max_abs: 0.004
+    ettringite:
+      max_abs: 0.004
+    Portlandite:
+      max_abs: 0.004
+
+objectives:
+  minimize:
+    validated_targets:
+      Portlandite: 0.6
+    inputs:
+      OPC: 0.3
+      gypsum: 0.3
+
+  maximize:
+    validated_targets:
+      C-A-S-H: 1.0
+      monocarbonate: 0.1
+
+score:
+  normalize: minmax

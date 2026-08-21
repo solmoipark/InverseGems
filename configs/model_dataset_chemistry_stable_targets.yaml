@@ -1,0 +1,83 @@
+filters:
+  chemistry_status: complete
+  drop_missing_inputs: true
+  drop_missing_targets: true
+
+metadata:
+  include:
+    - recipe_id
+    - chem_hash
+    - prepared_id
+    - reaction_model_id
+    - reaction_model_signature
+    - template_name
+    - material_system
+    - target_profile
+    - target_profile_description
+    - age_days
+    - age_label
+    - age_bin
+    - OPC
+    - slag
+    - fly_ash
+    - metakaolin
+    - silica_fume
+    - limestone
+    - gypsum
+    - w_b
+    - water_g
+    - xgems_water_g
+    - xgems_w_b
+    - chemistry_status
+    - solver_rescued
+    - xgems_retry_count
+
+inputs:
+  include:
+    - chem_oxide_equiv_mol_CaO
+    - chem_oxide_equiv_mol_SiO2
+    - chem_oxide_equiv_mol_Al2O3
+    - chem_oxide_equiv_mol_Fe2O3
+    - chem_oxide_equiv_mol_MgO
+    - chem_oxide_equiv_mol_SO3
+    - chem_oxide_equiv_mol_Na2O
+    - chem_oxide_equiv_mol_K2O
+    - chem_oxide_equiv_mol_CO2
+    - chem_oxide_equiv_mol_H2O
+    - xgems_water_g
+    - temperature_celsius
+
+targets:
+  scalars:
+    porosity: porosity
+    pH: scalar__pH
+  phase_amount_groups:
+    include:
+      - C-A-S-H
+      - ettringite
+      - monosulfate
+      - hemicarbonate
+      - monocarbonate
+      - aluminosilicate gel
+      - Calcite
+      - Portlandite
+      - OH-hydrotalcite
+      - Brucite
+  phase_volume_groups:
+    include:
+      - C-A-S-H
+      - ettringite
+      - monosulfate
+      - hemicarbonate
+      - monocarbonate
+      - aluminosilicate gel
+      - Calcite
+      - Portlandite
+      - OH-hydrotalcite
+      - Brucite
+
+output:
+  metadata_prefix: meta__
+  input_prefix: x__
+  target_prefix: y__
+  sanitize_column_names: true

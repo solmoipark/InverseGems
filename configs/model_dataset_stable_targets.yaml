@@ -1,0 +1,53 @@
+filters:
+  chemistry_status: complete
+  drop_missing_inputs: true
+  drop_missing_targets: true
+
+metadata:
+  include:
+    - recipe_id
+    - chem_hash
+    - prepared_id
+    - reaction_model_id
+    - reaction_model_signature
+    - template_name
+    - material_system
+    - age_label
+    - age_bin
+    - chemistry_status
+    - solver_rescued
+    - xgems_retry_count
+
+inputs:
+  include:
+    - OPC
+    - slag
+    - fly_ash
+    - metakaolin
+    - silica_fume
+    - limestone
+    - gypsum
+    - w_b
+    - age_days
+  derived:
+    log_age_days:
+      source: age_days
+      transform: log10
+
+targets:
+  scalars:
+    porosity: porosity
+    pH: scalar__pH
+  phase_amount_groups:
+    include:
+      - C-A-S-H
+      - ettringite
+      - monocarbonate
+      - Calcite
+      - Portlandite
+
+output:
+  metadata_prefix: meta__
+  input_prefix: x__
+  target_prefix: y__
+  sanitize_column_names: true

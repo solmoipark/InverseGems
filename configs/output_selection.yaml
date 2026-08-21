@@ -1,0 +1,123 @@
+phase_amounts:
+  include:
+    - CNASH
+    - ettringite
+    - SO4_CO3_AFt
+    - CO3_SO4_AFt
+    - OH_SO4_AFm
+    - SO4_OH_AFm
+    - C4AH19
+    - C4Ac0.5H12
+    - C4AcH11
+    - C3(AF)S0.84H
+    - straetlingite
+    - ZeoliteP
+    - Chabazite
+    - Silica-amorph
+    - aq_gen
+    - Calcite
+    - OH-hydrotalcite
+    - Brucite
+    - Gypsum
+    - Portlandite
+    - Al(OH)3mic
+
+phase_volumes:
+  include:
+    - CNASH
+    - ettringite
+    - SO4_CO3_AFt
+    - CO3_SO4_AFt
+    - OH_SO4_AFm
+    - SO4_OH_AFm
+    - C4AH19
+    - C4Ac0.5H12
+    - C4AcH11
+    - C3(AF)S0.84H
+    - straetlingite
+    - ZeoliteP
+    - Chabazite
+    - Silica-amorph
+    - aq_gen
+    - Calcite
+    - OH-hydrotalcite
+    - Brucite
+    - Gypsum
+    - Portlandite
+    - Al(OH)3mic
+
+aqueous_species:
+  include: []
+
+phase_groups:
+  amounts:
+    C-A-S-H:
+      include: [CNASH]
+    ettringite:
+      include: [ettringite, SO4_CO3_AFt, CO3_SO4_AFt]
+    monosulfate:
+      include: [OH_SO4_AFm, SO4_OH_AFm, C4AH19]
+    hemicarbonate:
+      include: [C4Ac0.5H12]
+    monocarbonate:
+      include: [C4AcH11]
+    siliceous hydrogarnet:
+      include: [C3(AF)S0.84H]
+    straetlingite:
+      include: [straetlingite]
+    aluminosilicate gel:
+      include: [ZeoliteP, Chabazite, Silica-amorph]
+    Water:
+      include: [aq_gen]
+    Calcite:
+      include: [Calcite]
+    OH-hydrotalcite:
+      include: [OH-hydrotalcite]
+    Brucite:
+      include: [Brucite]
+    Gypsum:
+      include: [Gypsum]
+    Portlandite:
+      include: [Portlandite]
+    Al(OH)3mic:
+      include: [Al(OH)3mic]
+
+  volumes:
+    C-A-S-H:
+      include: [CNASH]
+    ettringite:
+      include: [ettringite, SO4_CO3_AFt, CO3_SO4_AFt]
+    monosulfate:
+      include: [OH_SO4_AFm, SO4_OH_AFm, C4AH19]
+    hemicarbonate:
+      include: [C4Ac0.5H12]
+    monocarbonate:
+      include: [C4AcH11]
+    siliceous hydrogarnet:
+      include: [C3(AF)S0.84H]
+    straetlingite:
+      include: [straetlingite]
+    aluminosilicate gel:
+      include: [ZeoliteP, Chabazite, Silica-amorph]
+    Water:
+      include: [aq_gen]
+    Calcite:
+      include: [Calcite]
+    OH-hydrotalcite:
+      include: [OH-hydrotalcite]
+    Brucite:
+      include: [Brucite]
+    Gypsum:
+      include: [Gypsum]
+    Portlandite:
+      include: [Portlandite]
+    Al(OH)3mic:
+      include: [Al(OH)3mic]
+
+scalars:
+  include:
+    - pH
+    - system_volume
+    - system_mass
+    - density
+    - porosity

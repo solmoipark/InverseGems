@@ -1,0 +1,33 @@
+name: stable_low_clinker_dense_hydrate_example
+
+model_table: data/model_table_early_dense_2000_retry_stable_targets.parquet
+model_bundle: reports/baseline_surrogate_early_dense_2000_retry_stable_targets/model.joblib
+
+constraints:
+  metadata:
+    age_bin:
+      include: [standard, long_term]
+  inputs:
+    OPC: {min: 20, max: 60}
+    w_b: {min: 0.30, max: 0.55}
+    age_days: {min: 7, max: 365}
+  predicted_targets:
+    porosity: {min: 0.20, max: 0.50}
+    pH: {min: 10.5, max: 13.5}
+    C-A-S-H: {min: 0.015}
+    Portlandite: {max: 0.004}
+
+objectives:
+  minimize:
+    OPC: 0.30
+    porosity: 1.00
+    Portlandite: 0.50
+    Calcite: 0.20
+  maximize:
+    C-A-S-H: 1.00
+    ettringite: 0.20
+
+score:
+  normalize: minmax
+
+top_k: 50

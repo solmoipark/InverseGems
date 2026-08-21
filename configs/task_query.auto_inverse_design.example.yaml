@@ -1,0 +1,26 @@
+name: auto_route_inverse_design_example
+task_type: inverse_design
+user_request: Use OPC, slag, and fly ash at 28 days; find low-porosity, high C-A-S-H binders with low OPC.
+
+design_query:
+  name: auto_route_OPC_slag_fly_ash_age28
+  design_space:
+    allowed_materials: [OPC, slag, fly_ash]
+    age_days: 28
+    input_constraints:
+      OPC: {max: 65}
+      w_b: {min: 0.30, max: 0.50}
+  output_constraints:
+    porosity: {max: 0.42}
+    C-A-S-H: {min: 0.034}
+    Portlandite: {max: 0.012}
+  objectives:
+    - {target: C-A-S-H, direction: maximize}
+    - {target: porosity, direction: minimize}
+    - {input: OPC, direction: minimize}
+  validation:
+    search_top_k: 60
+    top_k_xgems: 10
+    prediction_errors:
+      porosity: {max_abs: 0.025}
+      C-A-S-H: {max_abs: 0.004}

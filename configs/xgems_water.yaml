@@ -1,0 +1,33 @@
+default:
+  mode: initial
+  factor: 1.0
+  water_g: null
+  water_w_b: null
+
+policies:
+  initial:
+    description: Use the recipe initial water as the xGEMS equilibrium water.
+  fraction_of_initial:
+    description: Use factor * initial water as the xGEMS equilibrium water.
+    example_factor: 0.75
+  cap_w_b:
+    description: Use min(initial water, total binder mass * water_w_b).
+    example_water_w_b: 0.45
+  fixed_w_b:
+    description: Use total binder mass * water_w_b regardless of initial water.
+    example_water_w_b: 0.40
+  direct_water_g:
+    description: Use water_g directly as g H2O per recipe basis for xGEMS only.
+    example_water_g: 40.0
+
+adaptive_retry:
+  enabled_by_default: false
+  description: Retry only after a non-success xGEMS/GEMS solver status; primary calculations still use the requested water policy.
+  default_cap_w_b_ladder: [0.45, 0.40, 0.35, 0.30]
+  default_min_w_b: 0.30
+  metadata_fields:
+    - solver_rescued
+    - xgems_retry_count
+    - primary_chem_hash
+    - primary_solver_status
+    - retry_history_json

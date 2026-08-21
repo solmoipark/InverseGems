@@ -1,0 +1,40 @@
+description: >
+  Coverage expectations for the global reactive-chemistry DB. These are
+  demonstration defaults, not universal scientific acceptance criteria.
+
+material_systems:
+  - OPC_only
+  - OPC_slag
+  - OPC_fly_ash
+  - OPC_metakaolin
+  - OPC_silica_fume
+  - OPC_slag_fly_ash
+  - OPC_slag_limestone
+  - OPC_fly_ash_limestone
+  - LC3_like
+  - OPC_slag_silica_fume
+
+thresholds:
+  min_rows_per_material_system: 20
+  min_unique_chem_hashes_per_material_system: 20
+  min_total_rows: 200
+  min_surrogate_r2_recommended: 0.70
+  min_xgems_complete_fraction: 0.95
+  max_solver_rescued_fraction: 0.10
+  max_xgems_water_adjusted_fraction: 0.10
+  max_pH_unreliable_fraction: 0.05
+
+age_milestones_days:
+  - 0.1
+  - 1
+  - 7
+  - 28
+  - 56
+  - 90
+  - 180
+  - 365
+
+age_tolerance_fraction: 0.10
+age_tolerance_min_days: 0.01
+
+w_b_expected_range: [0.30, 0.55]

@@ -1,0 +1,27 @@
+c2s_weight: 0.30
+
+demand_coefficients:
+  slag: 0.35
+  fly_ash: 0.75
+  metakaolin: 1.00
+  silica_fume: 1.20
+
+eta:
+  slag: 0.35
+  fly_ash: 0.60
+  metakaolin: 0.90
+  silica_fume: 1.00
+
+absolute_max_D:
+  slag: 0.75
+  fly_ash: 0.60
+  metakaolin: 0.95
+  silica_fume: 0.95
+
+reference_system:
+  basis_g_binder: 100
+  OPC: 60.0
+  SCM_total: 40.0
+  w_b: 0.4
+  C3S_source: bogue_from_default_OPC
+  C2S_source: bogue_from_default_OPC

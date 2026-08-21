@@ -1,0 +1,40 @@
+name: OPC_slag_age28_ordered_example
+
+# This file is the deterministic schema that a future API/LLM layer should emit.
+# It is compiled into:
+# - surrogate_candidate_search.yaml
+# - candidate_selection.yaml
+
+material_system: OPC_slag
+age_days: 28
+age_bin: standard
+
+inputs:
+  OPC: {min: 30, max: 85}
+  slag: {min: 15, max: 70}
+  gypsum: {min: 0, max: 8}
+  w_b: {min: 0.30, max: 0.55}
+
+targets:
+  porosity: {max: 0.40}
+  ettringite: {max: 0.012}
+  C-A-S-H: {min: 0.038}
+  Portlandite: {max: 0.020}
+
+prediction_errors:
+  porosity: {max_abs: 0.015}
+  C-A-S-H: {max_abs: 0.003}
+  ettringite: {max_abs: 0.003}
+
+ranking:
+  mode: lexicographic
+
+# Input order is priority order.
+# First maximize C-A-S-H, then minimize OPC, then minimize porosity.
+preferences:
+  - {target: C-A-S-H, direction: maximize, tolerance: 0.001}
+  - {input: OPC, direction: minimize}
+  - {target: porosity, direction: minimize}
+
+search_top_k: 50
+selection_top_k: 10

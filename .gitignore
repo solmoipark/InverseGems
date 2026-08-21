@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Codex/local agent state
+.codex/
+.agents/
+
+# xGEMS/GEMS generated logs and transient files
+*.log
+ipmlog*.txt
+xGEMS*.log
+*-dbr-*.json
+*-dch.json
+*-fun.json
+*-ipm.json
+
+# Generated calculations, reports, and local databases
+runs/
+results/
+reports/
+data/
+
+# Local notebooks and checkpoints
+.ipynb_checkpoints/
+
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/

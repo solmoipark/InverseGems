@@ -1,0 +1,43 @@
+name: OPC_slag_fly_ash_volume_vs_time
+task: forward_time_series
+material_system: OPC_slag_fly_ash
+
+recipe:
+  binders:
+    OPC: 40
+    slag: 30
+    fly_ash: 30
+  w_b: 0.4
+
+age_grid:
+  start: 0.1
+  stop: 360
+  points: 24
+  spacing: log
+
+temperature_celsius: 20
+
+outputs:
+  phase_masses: all
+  phase_volumes: all
+  phase_volumes_reconstructed: all
+  aqueous_species: all
+  scalars: [pH, system_volume, system_mass]
+
+plots:
+  - kind: phase_volumes
+    names: all_nonzero
+    top_n: 12
+    filename: phase_volumes_vs_age.png
+    x_scale: log
+    y_scale: linear
+    title: Raw xGEMS phase volumes vs age
+
+response_summary:
+  phases: [CNASH, Portlandite]
+  phase_groups: [C-A-S-H, Portlandite, monosulfate]
+  scalars: [pH, porosity]
+  top_phases: 8
+  table_limit: 20
+  narrative_enabled: true
+  narrative_language: ko
