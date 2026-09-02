@@ -84,8 +84,9 @@ class ForwardRecipeSpec(BaseModel):
             raise ValueError("water_g must be positive.")
         return self
 
-    def binder_masses(self) -> dict[str, float]:
-        materials = load_materials()
+    def binder_masses(self, materials: dict[str, Any] | None = None) -> dict[str, float]:
+        if materials is None:
+            materials = load_materials()
         out: dict[str, float] = {}
         for name, value in (self.binders or {}).items():
             canonical = canonicalize_material_name(name, materials)
@@ -162,7 +163,9 @@ def expand_age_grid(spec: AgeGridSpec | dict[str, Any]) -> list[float]:
     return [float(value) for value in np.linspace(float(spec.start), float(spec.stop), int(spec.points))]
 
 
-def _recipe_text_for_age(recipe: ForwardRecipeSpec, age_days: float) -> str:
+def _recipe_text_for_age(
+    recipe: ForwardRecipeSpec, age_days: float, materials: dict[str, Any] | None = None
+) -> str:
     label_map = {
         "OPC": "OPC",
         "slag": "slag",
@@ -172,7 +175,7 @@ def _recipe_text_for_age(recipe: ForwardRecipeSpec, age_days: float) -> str:
         "limestone": "limestone",
         "gypsum": "gypsum",
     }
-    parts = [f"{label_map[name]} {mass:g}" for name, mass in sorted(recipe.binder_masses().items()) if mass != 0.0]
+    parts = [f"{label_map[name]} {mass:g}" for name, mass in sorted(recipe.binder_masses(materials).items()) if mass != 0.0]
     if recipe.w_b is not None:
         parts.append(f"w/b {float(recipe.w_b):g}")
     else:
@@ -401,6 +404,7 @@ def run_forward_query(
     max_xgems_calls: int | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     disable_plots: bool = False,
     fail_fast: bool = False,
 ) -> Path:
@@ -415,13 +419,14 @@ def run_forward_query(
     query_run_id = f"forward_query_{timestamp_compact()}_{short_hash(query_data, 8)}_{uuid.uuid4().hex[:6]}"
     shutil.copy2(query_path, out_dir / "forward_query_used.yaml")
     database = InverseGemsDatabase(db)
+    materials = load_materials(materials_config)
     ages = expand_age_grid(spec.age_grid)
     call_budget = XGEMSCallBudget(max_xgems_calls) if max_xgems_calls else None
     rows: list[dict[str, Any]] = []
     run_results: list[dict[str, Any]] = []
     warnings: list[str] = []
     for index, age_days in enumerate(ages, 1):
-        recipe_text = _recipe_text_for_age(spec.recipe, age_days)
+        recipe_text = _recipe_text_for_age(spec.recipe, age_days, materials=materials)
         recipe_id = f"{query_run_id}_age_{index:04d}"
         try:
             result = run_forward_cached(
@@ -450,6 +455,7 @@ def run_forward_query(
                 xgems_call_budget=call_budget,
                 reaction_model_id=reaction_model_id,
                 reaction_model_config=reaction_model_config,
+                materials_config=materials_config,
                 recipe_id=recipe_id,
                 recipe_metadata={
                     "forward_query_run_id": query_run_id,
@@ -483,7 +489,7 @@ def run_forward_query(
                         "recipe_id": f"{query_run_id}_age_{index + skip_offset:04d}",
                         "chemistry_status": "skipped_budget",
                         "error_message": message,
-                        "recipe_text": _recipe_text_for_age(spec.recipe, skip_age),
+                        "recipe_text": _recipe_text_for_age(spec.recipe, skip_age, materials=materials),
                         "age_days": skip_age,
                         "preflight_dir": "",
                     }

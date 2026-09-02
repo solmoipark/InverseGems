@@ -305,6 +305,7 @@ def validate_candidates(
     retry_water_min_w_b: float = 0.30,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     fail_fast: bool = False,
 ) -> Path:
     if not use_mock and dat_lst is None:
@@ -370,6 +371,7 @@ def validate_candidates(
                 retry_water_min_w_b=retry_water_min_w_b,
                 reaction_model_id=reaction_model_id,
                 reaction_model_config=reaction_model_config,
+                materials_config=materials_config,
                 recipe_metadata=recipe_metadata,
             )
             record.update(result)

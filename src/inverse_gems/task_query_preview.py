@@ -676,6 +676,7 @@ def run_confirmed_task_query(
     reaction_model_id: str | None = None,
     reaction_model_signature: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     disable_plots: bool = False,
     fail_fast: bool = False,
 ) -> Path:
@@ -732,6 +733,7 @@ def run_confirmed_task_query(
         reaction_model_id=reaction_model_id,
         reaction_model_signature=reaction_model_signature,
         reaction_model_config=reaction_model_config,
+        materials_config=materials_config,
         disable_plots=disable_plots,
         fail_fast=fail_fast,
     )

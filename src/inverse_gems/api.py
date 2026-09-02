@@ -292,6 +292,7 @@ def run_forward_request(
     max_xgems_calls: int | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     disable_plots: bool = False,
     fail_fast: bool = False,
 ) -> RequestResult:
@@ -323,6 +324,7 @@ def run_forward_request(
         max_xgems_calls=max_xgems_calls,
         reaction_model_id=reaction_model_id,
         reaction_model_config=reaction_model_config,
+        materials_config=materials_config,
         disable_plots=disable_plots,
         fail_fast=fail_fast,
     )
@@ -406,6 +408,7 @@ def run_confirmed_request(
     reaction_model_id: str | None = None,
     reaction_model_signature: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     disable_plots: bool = False,
     fail_fast: bool = False,
 ) -> RequestResult:
@@ -446,6 +449,7 @@ def run_confirmed_request(
         reaction_model_id=reaction_model_id,
         reaction_model_signature=reaction_model_signature,
         reaction_model_config=reaction_model_config,
+        materials_config=materials_config,
         disable_plots=disable_plots,
         fail_fast=fail_fast,
     )
@@ -497,6 +501,7 @@ def run_request(
     reaction_model_id: str | None = None,
     reaction_model_signature: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     disable_plots: bool = False,
     fail_fast: bool = False,
 ) -> RequestResult:
@@ -542,6 +547,7 @@ def run_request(
             reaction_model_id=reaction_model_id,
             reaction_model_signature=reaction_model_signature,
             reaction_model_config=reaction_model_config,
+            materials_config=materials_config,
             disable_plots=disable_plots,
             fail_fast=fail_fast,
         )
@@ -569,6 +575,7 @@ def run_request(
             retry_water_min_w_b=retry_water_min_w_b,
             reaction_model_id=reaction_model_id,
             reaction_model_config=reaction_model_config,
+            materials_config=materials_config,
             disable_plots=disable_plots,
             fail_fast=fail_fast,
         )
@@ -607,6 +614,7 @@ def run_request(
             reaction_model_id=reaction_model_id,
             reaction_model_signature=reaction_model_signature,
             reaction_model_config=reaction_model_config,
+            materials_config=materials_config,
             disable_plots=disable_plots,
             fail_fast=fail_fast,
         )
@@ -650,6 +658,7 @@ def run_request(
         reaction_model_id=reaction_model_id,
         reaction_model_signature=reaction_model_signature,
         reaction_model_config=reaction_model_config,
+        materials_config=materials_config,
         disable_plots=disable_plots,
         fail_fast=fail_fast,
     )
