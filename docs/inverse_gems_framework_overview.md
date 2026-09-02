@@ -119,6 +119,11 @@ src/inverse_gems/bogue.py
 
 Negative Bogue values are clipped to zero, and warnings are preserved. Raw Bogue values are retained in metadata.
 
+The default OPC in `configs/materials.yaml` is a representative CEM I 42.5 (CaO 63.3, SiO2 20.2,
+Al2O3 5.0, Fe2O3 3.0, MgO 1.8, SO3 3.0, Na2O 0.2, K2O 0.8 → Bogue C3S 57.7 / C2S 14.7 / C3A 8.2 /
+C4AF 9.1 mass-%). Until 2026-09-03 the default was an alite-rich clinker (C3S 66.2 %); every cached
+chemistry, surrogate and regression anchor produced before that date reflects the old composition.
+
 OPC oxides that the Bogue phases do not carry (SO3, MgO, Na2O, K2O) are added to the xGEMS input
 separately (`opc_minor_oxides` policy in the reaction parameters, enabled by default): SO3 enters
 as calcium sulfate (its CaO is re-added because Bogue removed it from C3S), Na2O/K2O are fully

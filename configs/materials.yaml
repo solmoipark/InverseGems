@@ -1,13 +1,18 @@
 OPC:
+  # Representative CEM I 42.5 composition (2026-09-03). Bogue: C3S 57.7, C2S 14.7,
+  # C3A 8.2, C4AF 9.1 mass-%. The previous default (CaO 65.9, SiO2 20.2, Al2O3 5.6,
+  # Fe2O3 2.4, MgO 2.0, SO3 2.6, Na2O 0.5, K2O 0.7) gave C3S 66.2 / C2S 8.3, an
+  # unrealistically alite-rich clinker that inflated portlandite by ~3 g/100 g.
+  # The remaining ~2.3 % (free lime, LOI, minor oxides) is not represented.
   oxide_mass_percent:
     SiO2: 20.2
-    Al2O3: 5.6
-    Fe2O3: 2.4
-    CaO: 65.9
-    MgO: 2.0
-    SO3: 2.6
-    Na2O: 0.5
-    K2O: 0.7
+    Al2O3: 5.0
+    Fe2O3: 3.0
+    CaO: 63.3
+    MgO: 1.8
+    SO3: 3.0
+    Na2O: 0.2
+    K2O: 0.8
   density_g_cm3: 3.15
 
 slag:
