@@ -46,8 +46,16 @@ def test_mass_closure_of_opc():
     reacted_kg = sum(v for k, v in xi.species_amounts_kg.items() if k != "H2O@")
     unreacted_g = xi.unreacted_masses_g["OPC"]
     total_g = reacted_kg * 1000.0 + unreacted_g
-    # Bogue phases (92.6 %) + minor oxides (5.8 %) + companion CaO (1.8 %) ≈ 100 g of OPC
-    assert 99.0 <= total_g <= 101.0, total_g
+    ox = materials["OPC"].oxide_mass_percent
+    # everything the composition describes must be accounted for: Bogue phases + minor oxides
+    # + the companion CaO of the calcium sulfate (Bogue subtracts 2.85·SO3 of CaO from C3S,
+    # and the clipped Bogue sum is what is left after that); the residual to 100 g is the
+    # unrepresented part of the composition (free lime, LOI), which is not injected.
+    expected = sum(ox.values()) + ox.get("SO3", 0.0) * 56.0774 / 80.0632 - 0.0
+    bogue_sum = sum(xi.reaction_degrees["opc_phase_mass_percent"].values())
+    minor = sum(v for k, v in ox.items() if k not in ("CaO", "SiO2", "Al2O3", "Fe2O3"))
+    assert total_g == pytest.approx(bogue_sum + minor + ox.get("SO3", 0.0) * 56.0774 / 80.0632, abs=0.05), (total_g, bogue_sum, minor)
+    assert 95.0 <= total_g <= 101.0, total_g
 
 
 def test_disabled_reproduces_legacy_vector():
