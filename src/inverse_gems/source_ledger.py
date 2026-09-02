@@ -124,6 +124,44 @@ def build_source_ledger(
                 )
             )
 
+    # OPC minor oxides (SO3 as CaSO4 with its companion CaO, MgO, Na2O, K2O) — see
+    # xgems_input_builder._add_opc_minor_oxides; dropped oxides carry no component.
+    minor = reaction.get("opc_minor_oxides") or {}
+    if opc_mass > 0 and minor.get("enabled"):
+        for oxide, entry in (minor.get("per_oxide") or {}).items():
+            if entry.get("dropped") or entry.get("species") is None:
+                continue
+            initial = float(entry["mass_g"])
+            alpha = float(entry["degree"])
+            rows.extend(
+                rows_for_component_mass(
+                    recipe_id=recipe_id,
+                    chem_hash=chem_hash,
+                    source_material="OPC",
+                    source_phase_or_oxide=oxide,
+                    source_mass_g_initial=initial,
+                    reaction_degree=alpha,
+                    reacted_mass_g=initial * alpha,
+                    unreacted_mass_g=initial * (1.0 - alpha),
+                    component_name=oxide,
+                )
+            )
+            cao_g = entry.get("companion_CaO_g")
+            if cao_g:
+                rows.extend(
+                    rows_for_component_mass(
+                        recipe_id=recipe_id,
+                        chem_hash=chem_hash,
+                        source_material="OPC",
+                        source_phase_or_oxide="CaO(CaSO4)",
+                        source_mass_g_initial=float(cao_g),
+                        reaction_degree=alpha,
+                        reacted_mass_g=float(cao_g) * alpha,
+                        unreacted_mass_g=float(cao_g) * (1.0 - alpha),
+                        component_name="CaO",
+                    )
+                )
+
     scm_alpha = reaction.get("scm", {})
     for material_name, mass in recipe.binder_masses_g.items():
         if material_name not in SCM_NAMES or mass <= 0:
