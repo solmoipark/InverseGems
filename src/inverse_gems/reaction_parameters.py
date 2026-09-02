@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +17,18 @@ from .utils import config_path, load_yaml, to_jsonable
 
 DEFAULT_REACTION_PARAMETER_SET_ID = "local_default_parameters"
 
+# OPC oxides that the Bogue conversion does not carry into the clinker phases. Before this
+# policy existed they were silently dropped, so the xGEMS system had no sulfur (no AFt/AFm)
+# and no alkalis (pH pinned at the portlandite buffer). Degrees: a number, or
+# "clinker_mean" (mass-weighted mean of the Parrot-Killoh clinker degrees).
+DEFAULT_OPC_MINOR_OXIDES: dict[str, Any] = {
+    "enabled": True,
+    "degrees": {"SO3": 1.0, "Na2O": 1.0, "K2O": 1.0, "MgO": "clinker_mean"},
+    # SO3 enters as CaSO4: the CaO tied to the sulfate (Bogue subtracts 2.85·SO3 from C3S) is
+    # added alongside the SO3 so calcium is conserved.
+    "sulfate_as_calcium_sulfate": True,
+}
+
 
 @dataclass
 class ReactionParameterSet:
@@ -31,9 +43,13 @@ class ReactionParameterSet:
     availability_config: dict[str, Any]
     apply_availability_modifier: bool
     warnings: list[str]
+    # OPC minor-oxide policy (SO3 as CaSO4, MgO, Na2O, K2O added to the xGEMS input);
+    # see DEFAULT_OPC_MINOR_OXIDES. Part of the signature payload.
+    opc_minor_oxides: dict[str, Any] = field(default_factory=lambda: dict(DEFAULT_OPC_MINOR_OXIDES))
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "opc_minor_oxides": dict(self.opc_minor_oxides),
             "id": self.id,
             "config_path": self.config_path,
             "config_hash": self.config_hash,
@@ -125,7 +141,12 @@ def load_reaction_parameters(
     pk_parameters, relative_humidity, fineness = _load_pk_parameters(raw)
     set_id = str(reaction_model_id or raw.get("id") or DEFAULT_REACTION_PARAMETER_SET_ID)
     warnings: list[str] = []
+    minor_raw = raw.get("opc_minor_oxides")
+    if isinstance(minor_raw, bool):
+        minor_raw = {"enabled": minor_raw}
+    opc_minor = _deep_merge(dict(DEFAULT_OPC_MINOR_OXIDES), dict(minor_raw or {}))
     return ReactionParameterSet(
+        opc_minor_oxides=opc_minor,
         id=set_id,
         config_path=str(config) if config else None,
         config_hash=config_hash,

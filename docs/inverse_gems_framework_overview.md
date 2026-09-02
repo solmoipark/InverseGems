@@ -119,6 +119,14 @@ src/inverse_gems/bogue.py
 
 Negative Bogue values are clipped to zero, and warnings are preserved. Raw Bogue values are retained in metadata.
 
+OPC oxides that the Bogue phases do not carry (SO3, MgO, Na2O, K2O) are added to the xGEMS input
+separately (`opc_minor_oxides` policy in the reaction parameters, enabled by default): SO3 enters
+as calcium sulfate (its CaO is re-added because Bogue removed it from C3S), Na2O/K2O are fully
+released, MgO follows the mass-weighted mean clinker degree. Without this the system had no
+sulfur (no AFt/AFm) and no alkalis (pore-solution pH pinned at the portlandite buffer). Disable
+with `opc_minor_oxides: {enabled: false}` to reproduce pre-policy chemistry; the policy is part
+of the reaction-model signature payload, so cached chemistry hashes differ between the two.
+
 ## 4. Parrot-Killoh OPC Hydration Model
 
 OPC clinker hydration is modeled using a refactored Parrot-Killoh style model.
