@@ -259,6 +259,7 @@ def run_chemistry_design_query(
     retry_water_min_w_b: float = 0.30,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     strict_materials: bool | None = None,
     target_availability_policy: str = "warn",
     fail_fast: bool = False,
@@ -321,6 +322,7 @@ def run_chemistry_design_query(
         xgems_water_w_b=xgems_water_w_b,
         reaction_model_id=reaction_model_id,
         reaction_model_config=reaction_model_config,
+        materials_config=materials_config,
     )
 
     compiled_dir = out_dir / "compiled_query"
@@ -383,6 +385,7 @@ def run_chemistry_design_query(
             retry_water_min_w_b=retry_water_min_w_b,
             reaction_model_id=reaction_model_id,
             reaction_model_config=reaction_model_config,
+            materials_config=materials_config,
             fail_fast=fail_fast,
         )
         selection = select_candidates(

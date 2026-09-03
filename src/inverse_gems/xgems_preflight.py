@@ -244,12 +244,13 @@ def run_xgems_input_preflight(
     xgems_water_w_b: float | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     instantiate_runner: bool = False,
     table_limit: int = 40,
 ) -> dict[str, Any]:
     """Build the exact xGEMS input for a recipe and diagnose it before equilibrium."""
     out_dir = Path(out)
-    materials = load_materials()
+    materials = load_materials(materials_config)
     recipe = parse_recipe(recipe_text, materials=materials, normalize=normalize, allow_non_100=allow_non_100)
     reaction_parameters = load_reaction_parameters(reaction_model_config, reaction_model_id=reaction_model_id)
     xgems_input = build_xgems_input(

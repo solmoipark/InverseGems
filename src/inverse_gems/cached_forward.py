@@ -224,9 +224,10 @@ def run_forward_cached(
     recipe_metadata: dict[str, Any] | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
 ) -> dict[str, Any]:
     database = InverseGemsDatabase(db)
-    materials = load_materials()
+    materials = load_materials(materials_config)
     recipe = parse_recipe(recipe_text, materials=materials, normalize=normalize, allow_non_100=allow_non_100)
     age_meta = age_metadata(recipe.age_days).to_dict()
     recipe.metadata.update(age_meta)
@@ -237,6 +238,7 @@ def run_forward_cached(
             "water_g": recipe.water_g,
             "w_b": recipe.w_b,
             "water_mode": recipe.water_mode,
+            "materials_config": str(materials_config) if materials_config else None,
         }
     )
     if recipe_metadata:

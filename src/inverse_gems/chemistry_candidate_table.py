@@ -71,6 +71,7 @@ def chemistry_candidate_row_from_recipe_row(
     xgems_water_w_b: float | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
 ) -> dict[str, Any]:
     """Project a recipe candidate to the same chemistry feature space used by xGEMS.
 
@@ -78,7 +79,7 @@ def chemistry_candidate_row_from_recipe_row(
     a chemistry-level surrogate and later validated with the normal xGEMS runner.
     """
 
-    materials = load_materials()
+    materials = load_materials(materials_config)
     recipe_text = recipe_text_from_row(row)
     recipe = parse_recipe(recipe_text, materials=materials, normalize=normalize, allow_non_100=allow_non_100)
     recipe.metadata.update(age_metadata(recipe.age_days).to_dict())
@@ -185,6 +186,7 @@ def build_chemistry_candidate_table(
     xgems_water_w_b: float | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     output_format: str | None = None,
 ) -> Path:
     rows = [
@@ -202,6 +204,7 @@ def build_chemistry_candidate_table(
             xgems_water_w_b=xgems_water_w_b,
             reaction_model_id=reaction_model_id,
             reaction_model_config=reaction_model_config,
+            materials_config=materials_config,
         )
         for row in _read_recipe_rows(recipes_csv)
     ]

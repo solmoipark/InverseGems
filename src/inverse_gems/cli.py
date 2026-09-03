@@ -109,8 +109,9 @@ def run_forward_recipe(
     xgems_water_w_b: float | None = None,
     reaction_model_id: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
 ) -> Path:
-    materials = load_materials()
+    materials = load_materials(materials_config)
     recipe = parse_recipe(recipe_text, materials=materials, normalize=normalize, allow_non_100=allow_non_100)
     reaction_parameters = load_reaction_parameters(reaction_model_config, reaction_model_id=reaction_model_id)
     reaction_model = current_reaction_model_metadata(

@@ -67,6 +67,7 @@ def run_design_query(
     reaction_model_id: str | None = None,
     reaction_model_signature: str | None = None,
     reaction_model_config: str | Path | None = None,
+    materials_config: str | Path | None = None,
     target_availability_policy: str = "warn",
     fail_fast: bool = False,
 ) -> Path:
@@ -151,6 +152,7 @@ def run_design_query(
             retry_water_min_w_b=retry_water_min_w_b,
             reaction_model_id=validation_reaction_model_id,
             reaction_model_config=validation_reaction_model_config,
+            materials_config=materials_config,
             fail_fast=fail_fast,
         )
         selection = select_candidates(

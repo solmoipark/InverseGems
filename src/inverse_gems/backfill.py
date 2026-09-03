@@ -330,9 +330,10 @@ def recompute_recipe_porosity_from_backfilled_volumes(
     status_csv: str | Path | None = None,
     summary_json: str | Path | None = None,
     progress_every: int = 1000,
+    materials_config: str | Path | None = None,
 ) -> dict[str, Any]:
     database = InverseGemsDatabase(db)
-    materials = load_materials()
+    materials = load_materials(materials_config)
     porosity_config = load_porosity_config()
     porosity_config["xgems_run_mode"] = "reacted_only"
     porosity_config["xgems_phase_volume_unit"] = xgems_phase_volume_unit
